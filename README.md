@@ -1,1 +1,1 @@
-# mapa_economia_circular
+# Mapa de Economía Circular: mundial y nacional
