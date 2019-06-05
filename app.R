@@ -4,15 +4,14 @@ library(estilotu)
 library(leaflet)
 library(shiny)
 
-tor::load_rds('data/')
+proyectos_ec <- readRDS('data/proyectos_ec.rds')
 
 ## ui.R ##
 
 ## UI CONFIG
 
 ## Header
-header <- dashboardHeader(
-                          #title = "Estrategias de Economía Circular",
+header <- dashboardHeader(title = "Estrategias de Economía Circular",
                           titleWidth = 400)
 
 # Sidebar content
