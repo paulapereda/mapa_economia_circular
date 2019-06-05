@@ -11,8 +11,8 @@ proyectos_ec <- readRDS('data/proyectos_ec.rds')
 ## UI CONFIG
 
 ## Header
-header <- dashboardHeader(title = "Estrategias de Economía Circular",
-                          titleWidth = 400)
+header <- dashboardHeader(title = "Uruguay: plan de acción de economía circular",
+                          titleWidth = 500)
 
 # Sidebar content
 sidebar <- dashboardSidebar(
