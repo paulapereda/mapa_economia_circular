@@ -18,7 +18,8 @@ header <- dashboardHeader(title = "Uruguay: plan de acción de economía circula
 sidebar <- dashboardSidebar(
   tags$head(tags$link(rel = "stylesheet", type = "text/css", href = "estilo.css")),
   sidebarMenu(
-    menuItem(text = "Lugares", tabName = "Lugares", icon = icon("dashboard")),
+    menuItem(text = "Mapamundi", tabName = "Mapamundi", icon = icon("map")),
+    menuItem(text = "En Uruguay", tabName = "En Uruguay", icon = icon("table")),
     menuItem(text = "About", tabName = "about", icon = icon("heart"))
   )
 )
@@ -32,9 +33,14 @@ body <-
       # Front Page
       
       # First sidebar tab - R-Ladies
-      tabItem(tabName = "Lugares",
+      
+      tabItem(tabName = "Mapamundi",
               selected = TRUE, 
               leafletOutput('map', height = 700)
+      ),
+      
+      tabItem(tabName = "En Uruguay",
+              dataTableOutput('tablauy') 
       ),
       
       tabItem(tabName = "about",

@@ -35,3 +35,17 @@ aux <- proyectos_ec %>%
 proyectos_ec <- proyectos_ec %>% 
   left_join(select(aux, ISO93, country, concepto))
 
+proyectos_ec_uy <- readxl::read_xlsx(here::here('data', 'ec_uy.xlsx')) %>% 
+  clean_names() %>% 
+  select(-proyecto_number_si_aplica, -responsable_coordinador, -observaciones) %>% 
+  mutate(sector = recode(sector,
+                         'Ganadería ' = "Ganadería")) %>% 
+  mutate(estado_finalizado_en_ejecucion_solicitado = recode(estado_finalizado_en_ejecucion_solicitado,
+                                                            'en ejecución' = "En ejecución",
+                                                            'En ejecución' = "En ejecución",
+                                                            'En Ejecución' = 	"En ejecución",
+                                                            'finalizado' = "Finalizado",
+                                                            'tratamiento Parlamento' = "Tratamiento Parlamento")) %>% 
+  mutate(instituciones_participantes = recode(instituciones_participantes,
+                                              'MVOTMA y MGAP' = "MVOTMA/MGAP"))
+
