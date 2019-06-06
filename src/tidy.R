@@ -35,6 +35,8 @@ aux <- proyectos_ec %>%
 proyectos_ec <- proyectos_ec %>% 
   left_join(select(aux, ISO93, country, concepto))
 
+saveRDS(proyectos_ec, 'data/proyectos_ec.rds')
+
 proyectos_ec_uy <- readxl::read_xlsx(here::here('data', 'ec_uy.xlsx')) %>% 
   clean_names() %>% 
   select(-proyecto_number_si_aplica, -responsable_coordinador, -observaciones) %>% 
