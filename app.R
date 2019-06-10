@@ -7,6 +7,8 @@ library(shiny)
 proyectos_ec <- readRDS('data/proyectos_ec.rds')
 proyectos_ec_uy <- readRDS('data/proyectos_ec_uy.rds')
 
+pal <- colorFactor(c(VERDE, AMARILLO, NARANJA), domain = proyectos_ec$tipo)
+
 ## ui.R ##
 
 ## UI CONFIG
@@ -81,22 +83,14 @@ server <- function(input, output) {
   output$map <- renderLeaflet({
     leaflet(data = proyectos_ec, options = leafletOptions(maxZoom = 8)) %>% 
       addTiles() %>%
-      addAwesomeMarkers(~lon, ~lat, icon = icons, popup = global_popups)
+      addCircleMarkers(~lon, ~lat, color = ~ pal(tipo), 
+                       popup = global_popups, radius = 10,
+                       stroke = FALSE, fillOpacity = 1) %>%
+      addLegend("bottomright", pal = pal, values = ~tipo,
+                title = "Visión",
+                opacity = 1)
   })
   
-  
-  # programas_table <- DT::datatable(proyectos_ec_uy, 
-  #                              colnames = c("Sector", "Institución", "Nombre del proyecto", 
-  #                                           "Fuente de financiamiento", "Estado", "Instituciones participantes",
-  #                                           "Web"),
-  #                              selection = "none",
-  #                              rownames = FALSE,
-  #                              options = list(
-  #                                lengthChange = FALSE,
-  #                                language = list(
-  #                                  search= 'Filtrar: ',
-  #                                  paginate = list(previous = 'Anterior', `next` = 'Siguiente')
-  #                                ))) 
   
   output$table <- DT::renderDataTable({
     DT::datatable(proyectos_ec_uy, 

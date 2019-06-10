@@ -11,6 +11,7 @@ proyectos_ec <- readxl::read_xlsx(here::here('data', 'proyectos_ec.xlsx')) %>%
   mutate(ISO93 = ifelse(pais == "Escocia", "GBR", ISO93),
          ISO93 = ifelse(pais == "Inglaterra", "GBR", ISO93),
          ISO99 = ifelse(pais == "Holanda", "NLD", ISO93)) %>% 
+  filter(vision != "Plan de acción para una economía circular en Europa (2015)") %>% 
   left_join(select(coords, `Alpha-3 code`, lat, lon), by = c("ISO93" = "Alpha-3 code"))
 
 aux <- proyectos_ec %>% 
@@ -35,7 +36,7 @@ aux <- proyectos_ec %>%
 proyectos_ec <- proyectos_ec %>% 
   left_join(select(aux, ISO93, country, concepto))
 
-saveRDS(proyectos_ec, 'data/proyectos_ec.rds')
+#saveRDS(proyectos_ec, 'data/proyectos_ec.rds')
 
 proyectos_ec_uy <- readxl::read_xlsx(here::here('data', 'ec_uy.xlsx')) %>% 
   clean_names() %>% 
