@@ -1,4 +1,5 @@
 library(shinydashboard)
+library(tidyverse)
 library(htmltools)
 library(estilotu)
 library(leaflet)
@@ -10,7 +11,6 @@ proyectos_ec <- readRDS('data/proyectos_ec.rds') %>%
   mutate(tipo = case_when(
                 tipo == "Hoja de Rutas" ~ "Hoja de Ruta",
                 T ~ tipo))
-  
 
 proyectos_ec_uy <- readRDS('data/proyectos_ec_uy.rds') 
 
