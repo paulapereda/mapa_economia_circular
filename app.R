@@ -74,7 +74,7 @@ body <-
               fluidPage(
                 h1(strong("About")),
                 p("Esta app fue desarrollada por ",
-                  a("Tranforma Uruguay.", href = "https://www.transformauruguay.gub.uy/es/"), 
+                  a("Transforma Uruguay.", href = "https://www.transformauruguay.gub.uy/es/"), 
                   br(),
                   "Podés encontrar la fuente del código ",
                   a("aquí.", href = "https://github.com/paulapereda/mapa_economia_circular")))
