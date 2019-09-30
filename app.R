@@ -31,24 +31,16 @@ pal <- colorFactor(c(AZUL, VERDE, AMARILLO, NARANJA), domain = proyectos_ec$tipo
 ## UI CONFIG
 
 ## Header
-header <- dashboardHeader(title = "Uruguay: plan de acción de economía circular",
-                          titleWidth = 500,
-                          tags$li(a(href = 'https://www.transformauruguay.gub.uy',
-                                    img(src = "https://www.transformauruguay.gub.uy/media/images/logo_sntpc.svg?timestamp=20170908142947",
-                                        height="30px"),
-                                    style = "padding-top:10px; padding-bottom:10px;"),
-                                  class = "dropdown")
-                          )
+header <- dashboardHeader(title = "", titleWidth = 0)
 
 # Sidebar content
 sidebar <- dashboardSidebar(
   tags$head(tags$link(rel = "stylesheet", type = "text/css", href = "estilo.css")),
   sidebarMenu(
     menuItem(text = "Mapamundi", tabName = "Mapamundi", icon = icon("map")),
-    menuItem(text = "En Uruguay", tabName = "en_uruguay", icon = icon("table")),
-    menuItem(text = "About", tabName = "about", icon = icon("heart"))
+    menuItem(text = "En Uruguay", tabName = "en_uruguay", icon = icon("table")))
   )
-)
+
 
 ## Body content
 body <-   
@@ -67,17 +59,6 @@ body <-
       
       tabItem(tabName = "en_uruguay",
               DT::dataTableOutput('table') 
-      ),
-      
-      tabItem(tabName = "about",
-              
-              fluidPage(
-                h1(strong("About")),
-                p("Esta app fue desarrollada por ",
-                  a("Transforma Uruguay.", href = "https://www.transformauruguay.gub.uy/es/"), 
-                  br(),
-                  "Podés encontrar la fuente del código ",
-                  a("aquí.", href = "https://github.com/paulapereda/mapa_economia_circular")))
       )))
 
 
