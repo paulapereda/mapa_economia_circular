@@ -64,7 +64,7 @@ body <-
 
 
 
-ui <- dashboardPage(header, sidebar, body)
+ui <- dashboardPage(header, sidebar, body, skin = "black")
 
 icons <- awesomeIcons(icon = "whatever",
                       iconColor = "black",
